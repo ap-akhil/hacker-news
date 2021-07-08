@@ -1,0 +1,87 @@
+.App {
+  margin-top: 10px;
+}
+.spacer {
+  height: 5px;
+}
+.table-main {
+  width: 85%;
+  min-width: 796px;
+  margin-left: auto;
+  margin-right: auto;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+}
+
+.header-main {
+  background-color: #ff6600;
+}
+
+.header-main a {
+  text-decoration: none;
+  color: black;
+}
+
+.header-main a:hover {
+  color: #fff;
+}
+
+.header-logo {
+  border: 1px white solid;
+}
+
+.header-content {
+  padding: 2px;
+}
+
+.header-content td {
+  padding-right: 7px;
+}
+
+span.active {
+  color: #fff;
+}
+.article-top-item a {
+  text-decoration: none;
+}
+
+.article-top-item-index {
+  text-align: end;
+}
+
+.article-top-item,
+.article-bottom-item {
+  color: grey;
+}
+
+.article-top-item a:last-child {
+  color: grey;
+  font-size: 10px;
+}
+.article-title {
+  color: black;
+}
+.article-top-item td {
+  padding: 0 3px;
+}
+
+.article-bottom-item {
+  font-size: 10px;
+}
+
+.footer-item {
+  text-align: center;
+}
+
+.footer-item td {
+  padding-top: 20px;
+}
+
+@media only screen and (min-width: 300px) and (max-width: 750px) {
+  .table-main {
+    width: 100vw;
+    min-width: 0;
+  }
+}
