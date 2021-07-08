@@ -58,7 +58,7 @@ span.active {
 
 .article-top-item a:last-child {
   color: grey;
-  font-size: 10px;
+  font-size: 0.76rem;
 }
 .article-title {
   color: black;
@@ -68,7 +68,7 @@ span.active {
 }
 
 .article-bottom-item {
-  font-size: 10px;
+  font-size: 0.76rem;
 }
 
 .footer-item {
@@ -80,6 +80,11 @@ span.active {
 }
 
 @media only screen and (min-width: 300px) and (max-width: 750px) {
+  html,
+  body {
+    font-size: 10px;
+  }
+
   .table-main {
     width: 100vw;
     min-width: 0;

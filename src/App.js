@@ -1,16 +1,18 @@
-import "./App.css";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import New from "./pages/New";
-import Error from "./pages/Error";
-import Ask from "./pages/Ask";
-import Show from "./pages/Show";
-import Jobs from "./pages/Jobs";
-import Best from "./pages/Best";
+import "./App.css";
 
-function App() {
+const Home = lazy(() => import("./pages/Home"));
+const New = lazy(() => import("./pages/New"));
+const Error = lazy(() => import("./pages/Error"));
+const Ask = lazy(() => import("./pages/Ask"));
+const Show = lazy(() => import("./pages/Show"));
+const Jobs = lazy(() => import("./pages/Jobs"));
+const Best = lazy(() => import("./pages/Best"));
+
+const App = () => {
   return (
     <Router>
       <div className="App">
@@ -23,35 +25,29 @@ function App() {
         >
           <tbody>
             <Header />
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route path="/newest">
-                <New />
-              </Route>
-              <Route path="/best">
-                <Best />
-              </Route>
-              <Route path="/ask">
-                <Ask />
-              </Route>
-              <Route path="/show">
-                <Show />
-              </Route>
-              <Route path="/jobs">
-                <Jobs />
-              </Route>
-              <Route path="*">
-                <Error />
-              </Route>
-            </Switch>
+            <Suspense
+              fallback={
+                <tr>
+                  <td>Loading..</td>
+                </tr>
+              }
+            >
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/newest" component={New} />
+                <Route path="/ask" component={Ask} />
+                <Route path="/show" component={Show} />
+                <Route path="/jobs" component={Jobs} />
+                <Route path="/best" component={Best} />
+                <Route path="*" component={Error} />
+              </Switch>
+            </Suspense>
             <Footer />
           </tbody>
         </table>
       </div>
     </Router>
   );
-}
+};
 
 export default App;
