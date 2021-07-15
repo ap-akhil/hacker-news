@@ -1,22 +1,9 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import useFetch from "../api/customhook/useFetch";
 import Article from "./Article";
 
-export default function PageComponent({ apiFunc }) {
-  const [state, setState] = useState([]);
+export default function PageComponent({ endpoint }) {
+  const data = useFetch({ endpoint });
 
-  const getResults = async () => {
-    const data = await apiFunc();
-    setState(data);
-  };
-
-  useEffect(() => {
-    getResults();
-  }, []);
-
-  return (
-    <>
-      <Article data={state} />
-    </>
-  );
+  return <Article data={data} />;
 }

@@ -1,14 +1,8 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { getItem } from "../api";
+import React from "react";
+import useFetch from "../api/customhook/useFetch";
 
 export default function Articleitem({ id, index }) {
-  const [state, setState] = useState({});
-
-  const getlistItem = async () => {
-    const itemdata = await getItem(id);
-    setState(itemdata);
-  };
+  const data = useFetch({ initialState: {}, endpoint: `item/${id}/.json` });
 
   const DifferenceDateTime = (timestamp) => {
     let currentdate = new Date();
@@ -45,11 +39,7 @@ export default function Articleitem({ id, index }) {
     return parseurl;
   };
 
-  useEffect(() => {
-    getlistItem();
-  }, []);
-
-  if (Object.keys(state).length === 0) {
+  if (Object.keys(data).length === 0) {
     return null;
   }
 
@@ -59,13 +49,13 @@ export default function Articleitem({ id, index }) {
         <td className="article-top-item-index">{`${index}.`}</td>
         <td>+</td>
         <td>
-          <a className="article-title" href={state.url}>
-            {state.title}
+          <a className="article-title" href={data.url}>
+            {data.title}
           </a>{" "}
           <span>
             {" "}
-            {state.url ? (
-              <a href={state.url}>{` (${ParseURL(state.url)})`}</a>
+            {data.url ? (
+              <a href={data.url}>{` (${ParseURL(data.url)})`}</a>
             ) : (
               ""
             )}
@@ -75,8 +65,8 @@ export default function Articleitem({ id, index }) {
       <tr className="article-bottom-item">
         <td colSpan={2}></td>
         <td>
-          {state.score} points by {state.by} {DifferenceDateTime(state.time)} |{" "}
-          {state.descendants} comments
+          {data.score} points by {data.by} {DifferenceDateTime(data.time)} |{" "}
+          {data.descendants} comments
         </td>
       </tr>
       <tr className="spacer"></tr>
